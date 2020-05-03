@@ -40,5 +40,15 @@ pipeline
 				}
 			}
 		}
+		stage ('deploy')
+		{
+			steps
+			{
+				sshagent (credentials: ['deploy-dev']) 
+				{
+					sh 'scp -o StrictHostKeyChecking=no -l */target/*.war ec2-user@18.184.192.177:/var/lib/tomcat/webapps'
+				}
+			}
+		}
 	}
 }
