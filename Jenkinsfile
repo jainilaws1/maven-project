@@ -30,5 +30,15 @@ pipeline
 				}
 			}
 		}
+		stage ('package')
+		{
+			steps
+			{
+				withMaven (jdk: 'AWS JDK' , maven: 'AWS Maven')
+				{
+					sh 'mvn package'
+				}
+			}
+		}
 	}
 }
