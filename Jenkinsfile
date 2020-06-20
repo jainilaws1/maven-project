@@ -40,15 +40,14 @@ pipeline
 				}
 			}
 		}
-		stage ('deploy')
+		stage ('Docker Build')
 		{
 			steps
 			{
-				sshagent (credentials: ['DeployTomcat']) 
-				{
-					sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@18.184.192.177:/opt/apache-tomcat-10.0.0-M4/webapps'
-				}
+				sh 'docker build . -t tomcatWebapp:${env.BUILD_ID}'
 			}
+			
 		}
+		
 	}
 }
