@@ -44,7 +44,7 @@ pipeline
 		{
 			steps
 			{
-				sh 'docker build . -t tomcatWebapp:${BUILD_ID}'
+				sh 'docker build . -t tomcatwebapp:${BUILD_ID}'
 			}
 			
 		}
